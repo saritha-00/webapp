@@ -1,0 +1,195 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.main-page{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.introduction{
+    flex: 1;
+}
+.intro-text h1{
+    font-size: 70px;
+    font-weight: 900;
+    text-align: center;
+}
+h1 .saritha{
+    color: pink;
+
+}
+.intro-text h4{
+    margin-top: 30px;
+    font-size: 25px;
+    color: #EC2786;
+    text-align: center;
+    padding-left: 30px;
+    }
+.intro-text p{
+    margin-top: 30px;
+    font-size: 30px;
+    color: #6B76FF;
+    text-align: center;
+    padding-left: 30px;
+}
+.button {
+  padding: 0px 200px;
+  cursor: pointer;
+  margin-right: 20px;
+
+  
+  
+}
+
+.Details {
+ 
+  border: 2px solid #EC2786;
+  background-color: white;
+  color: #000;
+  font-size: 14px;
+  font-family:muli;
+  font-weight: 800;
+  border-radius: 5px;
+  width: 200px;
+  height: 50px;
+
+  
+}
+
+.Details:hover {
+  background-color: #EC2786;
+  color: #fff;
+}
+
+section{
+    display: flex;
+}
+ 
+.about-us h2{
+    color: #EC2786;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 70px;
+    font-family: poppins;
+    font-weight: bold;
+
+}
+.about-us p{
+    color: black;
+    text-align: justify;
+    font-family: poppins;
+}
+
+
+/*----End of About Us --*/
+
+
+.design-process-text
+{
+  color: #000;
+  text-align: center;
+  padding-top: 140px;
+  font-size: 70px;
+  font-family: poppins;
+  font-weight: bold;
+
+}
+.design-process-tagline
+{
+    color: #000;
+    text-align: center;
+    font-family: muli;
+    padding-top: 30px;
+}
+
+
+.design-process img
+{
+    align-items: center;
+    justify-content: center;
+    width: 150%;
+    display: flex;
+    margin-top: 60px;
+    margin-left: 50px;
+    transition: all 1s; 
+
+    
+} 
+.design-process img:hover
+   {
+    transform: scale(1.1);
+
+    }
+
+/*----- End of Services----*/
+/* Projects Section Styles */
+
+.projects {
+    margin-top: 50px;
+}
+
+.projects h2 {
+    margin-bottom: 30px;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s;
+    
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 18px;
+}
+
+/* Contact Section Styles */
+
+.contact {
+    margin-top: 50px;
+}
+
+.contact h2 {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.footer p {
+    margin: 0;
+}
