@@ -1,11 +1,24 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
 const server = http.createServer((req, res) => {
-  // Check if the request URL is "/index"
-  if (req.url === '/home') {
-    // Serve an HTML file for "/index"
-    fs.readFile('index.html', 'utf8', (err, data) => {
+  // Gets the context path from the request URL (e.g., /index or /resume)
+  const contextPath = req.url;
+
+  // Defining the mapping of context paths to HTML files
+  const contextToHtmlMap = {
+    '/index': 'index.html',
+    '/resume': 'Resume.html',
+  };
+
+  // Checking if the context path is in the map
+  if (contextPath in contextToHtmlMap) {
+    const htmlFileName = contextToHtmlMap[contextPath];
+    const filePath = path.join(__dirname, htmlFileName);
+
+    // Serve the HTML file based on the context path
+    fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         res.writeHead(500);
         res.end('Error loading HTML file');
@@ -21,6 +34,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(80, () => {
-  console.log('Server is running on port 80');
+server.listen(port, () => {
+  console.log('Server is running on port');
 });

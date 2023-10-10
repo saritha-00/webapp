@@ -1,32 +1,47 @@
-pipeline {
+pipeline 
+{
     agent any
     
-    stages {
-        stage('Checkout') {
-            steps {
+    stages 
+    {
+        stage('Checkout') 
+        {
+            steps 
+            {
                 checkout scm
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
+        stage('Build Docker Image') 
+        {
+            steps 
+            {
+                script 
+                {
                     // Build the Docker image
-                    sh 'docker build -t sarithaladella/myapp .'
-
-                       stage('Push to Docker Hub') {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
-                        // Login to Docker Hub
-                         sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
-
-                        // Push the Docker image to Docker Hub
-                        sh 'docker push sarithaladella/myapp'
+                    sh 'docker build -t sarithaladella/index .'
+                    sh 'docker build -t sarithaladella/resume .'
                 }
             }
         }
+
+        stage('Push to Docker Hub') 
+        {
+            steps 
+            {
+                script 
+                {
+                    withCredentials([usernamePassword(credentialsId: 'key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                        // Login to Docker Hub
+                        sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
+
+                        // Push the Docker image to Docker Hub
+                        sh 'docker push sarithaladella/index'
+                        sh 'docker push sarithaladella/resume'
                     }
                 }
             }
         }
+
     }
+}
