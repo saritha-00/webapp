@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Copies HTML files from your local machine into
-COPY /webapp/src/ /usr/share/nginx/html
+COPY src /usr/share/nginx/html
 
 # Exposes port 80, which is the default port for HTTP traffic
 EXPOSE 80
