@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const server = http.createServer((req, res) => {
   // Check if the request URL is "/index"
-  if (req.url === '/home') {
+  if (req.url === '/index') {
     // Serve an HTML file for "/index"
     fs.readFile('index.html', 'utf8', (err, data) => {
       if (err) {
