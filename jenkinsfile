@@ -49,8 +49,8 @@ pipeline
                 script {
                     sshagent(credentials: ['host-key']) {
                         sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@107.20.96.2 "sudo docker pull sarithaladella/index && sudo docker run -d -p 8000:7000 sarithaladella/index"
-                        ssh -o StrictHostKeyChecking=no ec2-user@107.20.96.2 "sudo docker pull sarithaladella/resume && sudo docker run -d -p 9000:8000 sarithaladella/resume"
+                        ssh -o StrictHostKeyChecking=no ec2-user@34.228.192.132 "sudo docker pull sarithaladella/index && sudo docker run -d -p 8000:7000 sarithaladella/index"
+                        ssh -o StrictHostKeyChecking=no ec2-user@34.228.192.132 "sudo docker pull sarithaladella/resume && sudo docker run -d -p 9000:8000 sarithaladella/resume"
                         '''
                     }      
                 }   
