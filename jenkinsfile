@@ -25,14 +25,14 @@ pipeline {
                         sh 'docker push sarithaladella/indexx'
                         sh 'docker push sarithaladella/resumee'
                       // Deploy to EC2 instance
-                        sh '''
-                            ssh -i /var/lib/jenkins/Jenkins-key.pem ec2-user@3.84.123.236 << EOF
-                            docker pull sarithaladella/index
-                            docker pull sarithaladella/resume
-                            docker run -d -p 1000:80 sarithaladella/indexx
-                            docker run -d -p 2000:80 sarithaladella/resumee
-                            EOF
-                        '''
+                        //sh '''
+                            //ssh -i /var/lib/jenkins/Jenkins-key.pem ec2-user@3.84.123.236 << EOF
+                            //docker pull sarithaladella/index
+                            //docker pull sarithaladella/resume
+                            //docker run -d -p 1000:80 sarithaladella/indexx
+                            //docker run -d -p 2000:80 sarithaladella/resumee
+                            //EOF
+                        //'''
             }
         }
                     }
