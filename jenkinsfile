@@ -12,38 +12,41 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build -t sarithaladella/index:V1 .'
-                    sh 'docker build -t sarithaladella/resume:V1 .'
-
-                       stage('Push to Docker Hub') {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
-                        // Login to Docker Hub
-                         sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
-
-                        // Push the Docker image to Docker Hub
-                        sh 'docker push sarithaladella/index:V1'
-                        sh 'docker push sarithaladella/resume:V1'
+                    sh 'docker build -t sarithaladella/index .'
+                    sh 'docker build -t sarithaladella/resume .'
                 }
             }
         }
+        
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                        // Login to Docker Hub
+                        sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
+
+                        // Push the Docker image to Docker Hub
+                        sh 'docker push sarithaladella/index'
+                        sh 'docker push sarithaladella/resume'
+                    }
+                }
+            }
+        }
+
         stage('Deploy to EC2') {
             steps {
                 script {
-                    // deploy to ec2 instance
+                    // Deploy to EC2 instance
                     sh '''
                         ssh -i Jenkins-key.pem ec2-user@3.84.123.236 << EOF
                         docker pull sarithaladella/index
                         docker pull sarithaladella/resume
-                        docker run -d -p 1000:80 sarithaladella/index:V1
-                        docker run -d -p 2000:80 sarithaladella/resume:V1
+                        docker run -d -p 1000:80 sarithaladella/index
+                        docker run -d -p 2000:80 sarithaladella/resume
                         EOF
                     '''
                 }
             }
         }
-                    }
-                }
-            }
-        }
     }
+}
