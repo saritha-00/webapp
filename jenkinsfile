@@ -1,16 +1,23 @@
-pipeline {
+pipeline 
+{
     agent any
     
-    stages {
-        stage('Checkout') {
-            steps {
+    stages 
+    {
+        stage('Checkout') 
+        {
+            steps 
+            {
                 checkout scm
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
+        stage('Build Docker Image') 
+        {
+            steps 
+            {
+                script 
+                {
                     // Build the Docker image
                     sh 'docker build -t sarithaladella/indexx .'
                     sh 'docker build -t sarithaladella/resumee .'
@@ -18,9 +25,12 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Hub') {
-            steps {
-                script {
+        stage('Push to Docker Hub') 
+        {
+            steps 
+            {
+                script 
+                {
                     withCredentials([usernamePassword(credentialsId: 'key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                         // Login to Docker Hub
                         sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
@@ -33,14 +43,17 @@ pipeline {
             }
         }
 
-        stage('Deploy to EC2 instance') {
-            steps {
-                script {
-                    ssh -i /var/lib/Jenkins/Jenkins-key.pem ec2-user@34.228.192.132 << EOF
+        stage('Deploy to EC2 instance') 
+        {
+            steps 
+            {
+                script 
+                {
+                    ssh -i /var/lib/Jenkins/Jenkins-key.pem ec2-user@3.84.123.236 << EOF
                         docker pull sarithaladella/indexx
                         docker pull sarithaladella/resumee
-                        docker run -d -p 80:1000 sarithaladella/indexx
-                        docker run -d -p 80:2000 sarithaladella/resumee
+                        docker run -d -p 1000:80 sarithaladella/indexx
+                        docker run -d -p 2000:80 sarithaladella/resumee
                     >> EOF
                 }
             }
