@@ -46,13 +46,13 @@ pipeline
        stage('Deploy to EC2 instance') {
             steps {
                 script {
-                    sshagent(credentials: ['key']) {
+                    sshagent(credentials: ['host-key']) {
                 sh '''
                     ssh ec2-user@34.228.192.132 << EOF
-                    docker pull sarithaladella/index
-                    docker pull sarithaladella/resume
-                    docker run -p 1000:80 sarithaladella/index
-                    docker run -p 2000:80 sarithaladella/resume
+                        docker pull sarithaladella/index
+                        docker pull sarithaladella/resume
+                        docker run -p 1000:80 sarithaladella/index
+                        docker run -p 2000:80 sarithaladella/resume
                     >> EOF
                 '''
             }
