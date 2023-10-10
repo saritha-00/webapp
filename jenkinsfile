@@ -46,7 +46,7 @@ pipeline
        stage('Deploy to EC2 instance') {
             steps {
                 script {
-                    sshagent(credentials: ['03831b46-edd5-4407-b55c-ec366ec80cd8']) {
+                    sshagent(credentials: ['key']) {
                 sh '''
                     ssh ec2-user@34.228.192.132 << EOF
                     docker pull sarithaladella/index
