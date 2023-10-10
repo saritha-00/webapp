@@ -46,7 +46,7 @@ pipeline
        stage('Deploy to EC2 instance') {
             steps {
                 script {
-                    sshagent(credentials: ['Jenkins-key']) {
+                    sshagent(credentials: ['Jenkins-ssh']) {
                 sh '''
                     ssh ec2-user@34.228.192.132 << EOF
                     docker pull sarithaladella/index:V2
