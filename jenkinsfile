@@ -36,12 +36,12 @@ pipeline {
         stage('Deploy to EC2 instance') {
             steps {
                 script {
-                    ssh -i /var/lib/Jenkins/Jenkins-key.pem  ec2-user@3.84.123.236 << EOF
+                    ssh -i /var/lib/Jenkins/Jenkins-key.pem ec2-user@3.84.123.236 << EOF
                         docker pull sarithaladella/indexx
                         docker pull sarithaladella/resumee
                         docker run -d -p 80:1000 sarithaladella/indexx
                         docker run -d -p 80:2000 sarithaladella/resumee
-                >> EOF
+                    >> EOF
                 }
             }
         }
