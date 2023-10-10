@@ -37,10 +37,10 @@ pipeline {
             steps {
                 script {
                     ssh -i /var/lib/Jenkins/Jenkins-key.pem ec2-user@3.84.123.236 << EOF
-                    docker pull sarithaladella/indexx
-                    docker pull sarithaladella/resumee
-                    docker run -d -p 1000:80 sarithaladella/indexx
-                    docker run -d -p 2000:80 sarithaladella/resumee
+                        docker pull sarithaladella/indexx
+                        docker pull sarithaladella/resumee
+                        docker run -d -p 1000:80 sarithaladella/indexx
+                        docker run -d -p 2000:80 sarithaladella/resumee
                     EOF
                 }
             }
