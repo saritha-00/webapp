@@ -25,8 +25,9 @@ pipeline {
                         sh 'docker push sarithaladella/index'
                         sh 'docker push sarithaladella/resume'
                          // Deploy to EC2 instance
+                    withCredentials([usernamePassword(credentialsId: 'Jenkins-key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                     sh '''
-                        ssh -i Jenkins-key.pem ec2-user@3.84.123.236 << EOF
+                        ssh -i credentialsId ec2-user@3.84.123.236 << EOF
                         docker pull sarithaladella/index
                         docker pull sarithaladella/resume
                         docker run -d -p 1000:80 sarithaladella/index
@@ -41,3 +42,4 @@ pipeline {
             }
         }
     }
+}
