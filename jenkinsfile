@@ -12,7 +12,8 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build -t sarithaladella/myapp .'
+                    sh 'docker build -t sarithaladella/index .'
+                    sh 'docker build -t sarithaladella/resume .'
 
                        stage('Push to Docker Hub') {
                 script {
@@ -21,7 +22,8 @@ pipeline {
                          sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
 
                         // Push the Docker image to Docker Hub
-                        sh 'docker push sarithaladella/myapp'
+                        sh 'docker push sarithaladella/index'
+                        sh 'docker push sarithaladella/resume'
                 }
             }
         }
