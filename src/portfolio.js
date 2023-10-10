@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
   // Defining the mapping of context paths to HTML files
   const contextToHtmlMap = {
     '/index': 'index.html',
-    '/resume': 'resume.html',
+    '/resume': 'Resume.html',
   };
 
   // Checking if the context path is in the map
