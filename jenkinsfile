@@ -14,29 +14,18 @@ pipeline {
                     // Build the Docker image
                     sh 'docker build -t sarithaladella/index .'
                     sh 'docker build -t sarithaladella/resume .'
-                }
-            }
-        }
-        
-        stage('Push to Docker Hub') {
-            steps {
+
+                       stage('Push to Docker Hub') {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'key', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                         // Login to Docker Hub
-                        sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
+                         sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
 
                         // Push the Docker image to Docker Hub
                         sh 'docker push sarithaladella/index'
                         sh 'docker push sarithaladella/resume'
-                    }
-                }
-            }
-        }
 
-        stage('Deploy to EC2') {
-            steps {
-                script {
-                    // Deploy to EC2 instance
+                        //Deploy to EC2'
                     sh '''
                         ssh -i Jenkins-key.pem ec2-user@3.84.123.236 << EOF
                         docker pull sarithaladella/index
@@ -48,5 +37,8 @@ pipeline {
                 }
             }
         }
+                    }
+                }
+            }
+        }
     }
-}
